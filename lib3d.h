@@ -1,10 +1,3 @@
-/*
-
-Uses row vectors rather than column vectors.
-Uses left-handed co-ordinate system.
-
-*/
-
 #include <cmath>
 
 namespace lib3d

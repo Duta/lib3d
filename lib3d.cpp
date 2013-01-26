@@ -23,7 +23,6 @@ Vector3 lib3d::add(Vector3 a, Vector3 b)
 
 Vector3 lib3d::subtract(Vector3 a, Vector3 b)
 {
-	//return add(a, negate(b));
 	Vector3 v;
 	v.x = a.x - b.x;
 	v.y = a.y - b.y;
@@ -51,11 +50,6 @@ Vector3 lib3d::multiply(Vector3 v, Matrix3 M)
 
 Vector3 lib3d::divide(Vector3 v, double k)
 {
-    // Is this a good thing
-    // to be doing? Not sure
-    // what should be done
-    // about possible divide-
-    // by-zero errors...
     if(k == 0)
     {
         return Vector3{0, 0, 0};
@@ -91,7 +85,6 @@ double lib3d::tripleProduct(Vector3 a, Vector3 b, Vector3 c)
 
 double lib3d::magnitude(Vector3 v)
 {
-    //return sqrt(dotProduct(v, v));
     return sqrt(v.x * v.x
               + v.y * v.y
               + v.z * v.z);
