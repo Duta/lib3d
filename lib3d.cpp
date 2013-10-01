@@ -5,29 +5,29 @@ using namespace lib3d;
 
 Vector3 lib3d::negate(Vector3 v)
 {
-	Vector3 v2;
-	v2.x = -v.x;
-	v2.y = -v.y;
-	v2.z = -v.z;
+    Vector3 v2;
+    v2.x = -v.x;
+    v2.y = -v.y;
+    v2.z = -v.z;
     return v2;
 }
 
 Vector3 lib3d::add(Vector3 a, Vector3 b)
 {
-	Vector3 v;
-	v.x = a.x + b.x;
-	v.y = a.y + b.y;
-	v.z = a.z + b.z;
-	return v;
+    Vector3 v;
+    v.x = a.x + b.x;
+    v.y = a.y + b.y;
+    v.z = a.z + b.z;
+    return v;
 }
 
 Vector3 lib3d::subtract(Vector3 a, Vector3 b)
 {
-	Vector3 v;
-	v.x = a.x - b.x;
-	v.y = a.y - b.y;
-	v.z = a.z - b.z;
-	return v;
+    Vector3 v;
+    v.x = a.x - b.x;
+    v.y = a.y - b.y;
+    v.z = a.z - b.z;
+    return v;
 }
 
 Vector3 lib3d::multiply(Vector3 v, double k)
@@ -126,7 +126,7 @@ double lib3d::magnitude(Vector3 v)
 
 double lib3d::distance(Vector3 a, Vector3 b)
 {
-	return magnitude(subtract(a, b));
+    return magnitude(subtract(a, b));
 }
 
 Vector3 lib3d::normalize(Vector3 v)
@@ -138,7 +138,7 @@ Matrix3 lib3d::xAxisRotationMatrix(double theta)
 {
     double sinTheta = sin(theta);
     double cosTheta = cos(theta);
-    
+
     Matrix3 M;
     M.m11 = 1;
     M.m12 = 0;
@@ -156,7 +156,7 @@ Matrix3 lib3d::yAxisRotationMatrix(double theta)
 {
     double sinTheta = sin(theta);
     double cosTheta = cos(theta);
-    
+
     Matrix3 M;
     M.m11 = cosTheta;
     M.m12 = 0;
