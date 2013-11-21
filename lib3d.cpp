@@ -3,7 +3,7 @@
 
 using namespace lib3d;
 
-Vector3 lib3d::negate(Vector3 v)
+Vector3 lib3d::negate(const Vector3 v)
 {
     Vector3 v2;
     v2.x = -v.x;
@@ -12,7 +12,7 @@ Vector3 lib3d::negate(Vector3 v)
     return v2;
 }
 
-Vector3 lib3d::add(Vector3 a, Vector3 b)
+Vector3 lib3d::add(const Vector3 a, const Vector3 b)
 {
     Vector3 v;
     v.x = a.x + b.x;
@@ -21,7 +21,7 @@ Vector3 lib3d::add(Vector3 a, Vector3 b)
     return v;
 }
 
-Vector3 lib3d::subtract(Vector3 a, Vector3 b)
+Vector3 lib3d::subtract(const Vector3 a, const Vector3 b)
 {
     Vector3 v;
     v.x = a.x - b.x;
@@ -30,7 +30,7 @@ Vector3 lib3d::subtract(Vector3 a, Vector3 b)
     return v;
 }
 
-Vector3 lib3d::multiply(Vector3 v, double k)
+Vector3 lib3d::multiply(const Vector3 v, const double k)
 {
     Vector3 v2;
     v2.x = v.x * k;
@@ -39,7 +39,7 @@ Vector3 lib3d::multiply(Vector3 v, double k)
     return v2;
 }
 
-Vector3 lib3d::multiply(Vector3 v, Matrix3 M)
+Vector3 lib3d::multiply(const Vector3 v, const Matrix3 M)
 {
     Vector3 v2;
     v2.x = v.x * M.m11 + v.y * M.m21 + v.z * M.m31;
@@ -48,7 +48,7 @@ Vector3 lib3d::multiply(Vector3 v, Matrix3 M)
     return v2;
 }
 
-Matrix3 lib3d::multiply(Matrix3 A, Matrix3 B)
+Matrix3 lib3d::multiply(const Matrix3 A, const Matrix3 B)
 {
     /* Can be sped up */
 
@@ -82,7 +82,7 @@ Matrix3 lib3d::multiply(Matrix3 A, Matrix3 B)
     return M;
 }
 
-Vector3 lib3d::divide(Vector3 v, double k)
+Vector3 lib3d::divide(const Vector3 v, const double k)
 {
     if(k == 0)
     {
@@ -96,14 +96,14 @@ Vector3 lib3d::divide(Vector3 v, double k)
     return v2;
 }
 
-double lib3d::dotProduct(Vector3 a, Vector3 b)
+double lib3d::dotProduct(const Vector3 a, const Vector3 b)
 {
     return a.x * b.x
          + a.y * b.y
          + a.z * b.z;
 }
 
-Vector3 lib3d::crossProduct(Vector3 a, Vector3 b)
+Vector3 lib3d::crossProduct(const Vector3 a, const Vector3 b)
 {
     Vector3 v;
     v.x = a.y * b.z - a.z * b.y;
@@ -112,29 +112,29 @@ Vector3 lib3d::crossProduct(Vector3 a, Vector3 b)
     return v;
 }
 
-double lib3d::tripleProduct(Vector3 a, Vector3 b, Vector3 c)
+double lib3d::tripleProduct(const Vector3 a, const Vector3 b, const Vector3 c)
 {
     return dotProduct(a, crossProduct(b, c));
 }
 
-double lib3d::magnitude(Vector3 v)
+double lib3d::magnitude(const Vector3 v)
 {
     return sqrt(v.x * v.x
               + v.y * v.y
               + v.z * v.z);
 }
 
-double lib3d::distance(Vector3 a, Vector3 b)
+double lib3d::distance(const Vector3 a, const Vector3 b)
 {
     return magnitude(subtract(a, b));
 }
 
-Vector3 lib3d::normalize(Vector3 v)
+Vector3 lib3d::normalize(const Vector3 v)
 {
     return divide(v, magnitude(v));
 }
 
-Matrix3 lib3d::xAxisRotationMatrix(double theta)
+Matrix3 lib3d::xAxisRotationMatrix(const double theta)
 {
     double sinTheta = sin(theta);
     double cosTheta = cos(theta);
@@ -152,7 +152,7 @@ Matrix3 lib3d::xAxisRotationMatrix(double theta)
     return M;
 }
 
-Matrix3 lib3d::yAxisRotationMatrix(double theta)
+Matrix3 lib3d::yAxisRotationMatrix(const double theta)
 {
     double sinTheta = sin(theta);
     double cosTheta = cos(theta);
@@ -170,7 +170,7 @@ Matrix3 lib3d::yAxisRotationMatrix(double theta)
     return M;
 }
 
-Matrix3 lib3d::zAxisRotationMatrix(double theta)
+Matrix3 lib3d::zAxisRotationMatrix(const double theta)
 {
     double sinTheta = sin(theta);
     double cosTheta = cos(theta);
@@ -188,7 +188,7 @@ Matrix3 lib3d::zAxisRotationMatrix(double theta)
     return M;
 }
 
-Matrix3 lib3d::axisRotationMatrix(Vector3 v, double theta)
+Matrix3 lib3d::axisRotationMatrix(const Vector3 v, const double theta)
 {
     /* Just in case */
     v = normalize(v);
@@ -210,7 +210,7 @@ Matrix3 lib3d::axisRotationMatrix(Vector3 v, double theta)
     return M;
 }
 
-Matrix3 lib3d::scale(double sf)
+Matrix3 lib3d::scale(const double sf)
 {
     Matrix3 M;
     M.m11 = M.m22 = M.m33 = sf;
@@ -218,7 +218,7 @@ Matrix3 lib3d::scale(double sf)
     return M;
 }
 
-Matrix3 lib3d::scale(double sfx, double sfy, double sfz)
+Matrix3 lib3d::scale(const double sfx, const double sfy, const double sfz)
 {
     Matrix3 M;
     M.m11 = sfx;
@@ -228,7 +228,7 @@ Matrix3 lib3d::scale(double sfx, double sfy, double sfz)
     return M;
 }
 
-Matrix3 lib3d::scale(Vector3 v, double sf)
+Matrix3 lib3d::scale(const Vector3 v, const double sf)
 {
     /* Just in case */
     v = normalize(v);
@@ -248,13 +248,13 @@ Matrix3 lib3d::scale(Vector3 v, double sf)
     return M;
 }
 
-Matrix3 lib3d::orthoProjection(Vector3 v)
+Matrix3 lib3d::orthoProjection(const Vector3 v)
 {
     /* Can be sped up */
     return scale(v, 0);
 }
 
-Matrix3 lib3d::reflection(Vector3 v)
+Matrix3 lib3d::reflection(const Vector3 v)
 {
     /* Can be sped up */
     return scale(v, -1);
