@@ -199,13 +199,13 @@ Matrix3 lib3d::axisRotationMatrix(const Vector3 v, const double theta)
 
     Matrix3 M;
     M.m11 = v.x * v.x * negCos + cosTheta;
-    M.m12 = v.x * v.y * negCos + v.z * sinTheta;
-    M.m13 = v.x * v.z * negCos - v.y * sinTheta;
-    M.m21 = v.x * v.y * negCos - v.z * sinTheta;
+    M.m12 = v.x * v.y * negCos + sinTheta * v.z;
+    M.m13 = v.x * v.z * negCos - sinTheta * v.y;
+    M.m21 = v.x * v.y * negCos - sinTheta * v.z;
     M.m22 = v.y * v.y * negCos + cosTheta;
-    M.m23 = v.y * v.z * negCos + v.x * sinTheta;
-    M.m31 = v.x * v.z * negCos + v.y * sinTheta;
-    M.m32 = v.y * v.z * negCos - v.x * sinTheta;
+    M.m23 = v.y * v.z * negCos + sinTheta * v.x;
+    M.m31 = v.x * v.z * negCos + sinTheta * v.y;
+    M.m32 = v.y * v.z * negCos - sinTheta * v.x;
     M.m33 = v.z * v.z * negCos + cosTheta;
     return M;
 }
@@ -239,11 +239,11 @@ Matrix3 lib3d::scale(const Vector3 v, const double sf)
     M.m11 = sf * v.x * v.x + 1;
     M.m12 = sf * v.x * v.y;
     M.m13 = sf * v.x * v.z;
-    M.m21 = sf * v.x * v.y;
+    M.m21 = sf * v.y * v.x;
     M.m22 = sf * v.y * v.y + 1;
     M.m23 = sf * v.y * v.z;
-    M.m31 = sf * v.x * v.z;
-    M.m32 = sf * v.y * v.z;
+    M.m31 = sf * v.z * v.x;
+    M.m32 = sf * v.z * v.y;
     M.m33 = sf * v.z * v.z + 1;
     return M;
 }
