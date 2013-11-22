@@ -236,15 +236,15 @@ Matrix3 lib3d::scale(const Vector3 v, const double sf)
     sf = sf - 1;
 
     Matrix3 M;
-    M.m11 = 1 + sf * v.x * v.x;
+    M.m11 = sf * v.x * v.x + 1;
     M.m12 = sf * v.x * v.y;
     M.m13 = sf * v.x * v.z;
     M.m21 = sf * v.x * v.y;
-    M.m22 = 1 + sf * v.y * v.y;
+    M.m22 = sf * v.y * v.y + 1;
     M.m23 = sf * v.y * v.z;
     M.m31 = sf * v.x * v.z;
     M.m32 = sf * v.y * v.z;
-    M.m33 = 1 + sf * v.z * v.z;
+    M.m33 = sf * v.z * v.z + 1;
     return M;
 }
 
