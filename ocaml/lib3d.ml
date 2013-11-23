@@ -30,9 +30,9 @@ let mul_vec_sf v sf = {
 };;
 
 let mul_vec_mat v m = {
-  x = v.x *. m.m11 +. v.y *. m.m21 +. v.z *. m.m31;
-  y = v.x *. m.m12 +. v.y *. m.m22 +. v.z *. m.m32;
-  z = v.x *. m.m13 +. v.y *. m.m23 +. v.z *. m.m33;
+  x = v.x*.m.m11 +. v.y*.m.m21 +. v.z*.m.m31;
+  y = v.x*.m.m12 +. v.y*.m.m22 +. v.z*.m.m32;
+  z = v.x*.m.m13 +. v.y*.m.m23 +. v.z*.m.m33;
 };;
 
 let mul_mat_mat a b =
@@ -59,18 +59,14 @@ let dotProduct a b =
   a.z *. b.z;;
 
 let crossProduct a b = {
-  x = a.y *. b.z -. a.z *. b.y;
-  y = a.z *. b.x -. a.x *. b.z;
-  z = a.x *. b.y -. a.y *. b.x;
+  x = a.y*.b.z -. a.z*.b.y;
+  y = a.z*.b.x -. a.x*.b.z;
+  z = a.x*.b.y -. a.y*.b.x;
 };;
 
 let tripleProduct a b c = dotProduct a (crossProduct b c);;
 
-let magnitude v =
-  sqrt (
-    v.x *. v.x +.
-    v.y *. v.y +.
-    v.z *. v.z);;
+let magnitude v = sqrt (dotProduct v v);;
 
 let distance a b = magnitude (subtract a b);;
 
@@ -109,15 +105,15 @@ let axisRotationMatrix v theta =
   let ct = cos theta in
   let nc = 1. -. ct in
   {
-    m11 = v.x *. v.x *. nc +. ct;
-    m12 = v.x *. v.y *. nc +. v.z *. st;
-    m13 = v.x *. v.z *. nc -. v.y *. st;
-    m21 = v.x *. v.y *. nc -. v.x *. st;
-    m22 = v.y *. v.y *. nc +. ct;
-    m23 = v.y *. v.z *. nc +. v.x *. st;
-    m31 = v.x *. v.z *. nc +. v.y *. st;
-    m32 = v.y *. v.z *. nc -. v.x *. st;
-    m33 = v.z *. v.z *. nc +. ct;
+    m11 = v.x*.v.x*.nc +. ct;
+    m12 = v.x*.v.y*.nc +. st*.v.z;
+    m13 = v.x*.v.z*.nc -. st*.v.y;
+    m21 = v.y*.v.x*.nc -. st*.v.x;
+    m22 = v.y*.v.y*.nc +. ct;
+    m23 = v.y*.v.z*.nc +. st*.v.x;
+    m31 = v.z*.v.x*.nc +. st*.v.y;
+    m32 = v.z*.v.y*.nc -. st*.v.x;
+    m33 = v.z*.v.z*.nc +. ct;
   };;
 
 let scale_sf sf = {
@@ -136,15 +132,15 @@ let scale_axis v sf =
   let v = normalize v in
   let sf = sf -. 1. in
   {
-    m11 = sf *. v.x *. v.x +. 1.;
-    m12 = sf *. v.x *. v.y;
-    m13 = sf *. v.x *. v.z;
-    m21 = sf *. v.x *. v.y;
-    m22 = sf *. v.y *. v.y +. 1.;
-    m23 = sf *. v.y *. v.z;
-    m31 = sf *. v.x *. v.z;
-    m32 = sf *. v.y *. v.z;
-    m33 = sf *. v.z *. v.z +. 1.;
+    m11 = sf*.v.x*.v.x +. 1.;
+    m12 = sf*.v.x*.v.y;
+    m13 = sf*.v.x*.v.z;
+    m21 = sf*.v.x*.v.y;
+    m22 = sf*.v.y*.v.y +. 1.;
+    m23 = sf*.v.y*.v.z;
+    m31 = sf*.v.x*.v.z;
+    m32 = sf*.v.y*.v.z;
+    m33 = sf*.v.z*.v.z +. 1.;
   };;
 
 let orthoProjection v = scale_axis v 0.;;
