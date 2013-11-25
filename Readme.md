@@ -20,16 +20,4 @@ This library is mainly a self-teaching exercise. If you want to look over the co
 
 ## Documentation
 
-For the actual documentation, consult the individual ports.
-
-### C++
-
-TODO
-
-### Java
-
-TODO
-
-### OCaml
-
-TODO
+For the actual documentation, consult the READMEs in the individual ports.
