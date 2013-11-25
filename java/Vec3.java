@@ -19,10 +19,12 @@ public class Vec3 {
         this.z = z;
     }
 
-    public boolean equals(Vec3 v) {
-        if(v == null) {
+    public boolean equals(Object anObject) {
+        if(anObject == null
+        || !(anObject instanceof Vec3)) {
             return false;
         }
+        Vec3 v = (Vec3)anObject;
         return x == v.x
             && y == v.y
             && z == v.z;
@@ -136,7 +138,7 @@ public class Vec3 {
     }
 
     public double tripleProduct(Vec3 v1, Vec3 v2) {
-        if(v == null) {
+        if(v1 == null || v2 == null) {
             throw new NullPointerException(
                 "Can't triple product a vector with null");
         }

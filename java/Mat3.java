@@ -164,7 +164,7 @@ public class Mat3 {
             throw new IllegalArgumentException(
                 "Can't use a null axis vector");
         }
-        return Mat3.scale(v, 0);
+        return Mat3.scale(axis, 0);
     }
 
     public static Mat3 reflection(Vec3 axis) {
@@ -172,7 +172,7 @@ public class Mat3 {
             throw new IllegalArgumentException(
                 "Can't use a null axis vector");
         }
-        return Mat3.scale(v, -1);
+        return Mat3.scale(axis, -1);
     }
 
     public Vec3 getRow(int i) {
