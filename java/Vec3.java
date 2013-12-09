@@ -20,6 +20,10 @@ public class Vec3 {
      * Creates a vector with the given
      * x, y and z components.
      *
+     * @param x The x component
+     * @param y The y component
+     * @param z The z component
+     *
      * @throws IllegalArgumentException
      *  if any of x, y, or z were NaN
      * @throws IllegalArgumentException
@@ -55,6 +59,8 @@ public class Vec3 {
      * {@link #equals(Vec3, double) equals}
      * method.
      *
+     * @param anObject The object to compare against
+     *
      * @return <code>true</code> if the given object
      *         represents a Vec3 with exactly the
      *         same x, y and z components as this
@@ -79,6 +85,10 @@ public class Vec3 {
      * that component in this vector and the same
      * component in v is less than or equal to
      * <code>epsilon</code>.
+     *
+     * @param v The vector to compare against
+     * @param epsilon The epsilon to use when comparing
+     *                the vectors' components
      *
      * @return <code>true</code> if all of the
      *         vector's components have an
@@ -154,6 +164,8 @@ public class Vec3 {
      * Given [a b c] and [d e f],
      * returns [a+d b+e c+f]
      *
+     * @param v The vector to add
+     *
      * @return the vector added to v
      *
      * @throws NullPointerException
@@ -173,6 +185,8 @@ public class Vec3 {
      *
      * Given [a b c] and [d e f],
      * returns [a-d b-e c-f].
+     *
+     * @param v The vector to subtract
      *
      * @return the vector with
      *         <code>v</code> subtracted
@@ -194,6 +208,9 @@ public class Vec3 {
      *
      * Given [a b c] and 2.0,
      * returns [2a 2b 2c].
+     *
+     * @param k The value to multiply each
+     *          component by
      *
      * @return the vector multiplied
      *         by <code>k</code>
@@ -228,6 +245,8 @@ public class Vec3 {
      * Bear in mind here that lib3d
      * uses row vectors.
      *
+     * @param m The matrix to multiply by
+     *
      * @return the vector multiplied
      *         by <code>m</code>
      *
@@ -251,6 +270,9 @@ public class Vec3 {
      *
      * Given [a b c] and 2.0,
      * returns [a/2 b/2 c/2].
+     *
+     * @param k The value to divide
+     *          each component by
      *
      * @return the vector divided
      *         by <code>k</code>
@@ -282,6 +304,9 @@ public class Vec3 {
      * Returns the dot product of the
      * vector and <code>v</code>.
      *
+     * @param v The vector to dot
+     *          product against
+     *
      * @return the dot product of the
      *         vector and <code>v</code>
      *
@@ -299,6 +324,9 @@ public class Vec3 {
     /**
      * Returns the cross product of the
      * vector and <code>v</code>.
+     *
+     * @param v The vector to cross
+     *          product against
      *
      * @return the cross product of the
      *         vector and <code>v</code>
@@ -324,6 +352,12 @@ public class Vec3 {
      * Equivalent to:
      *
      * <code>dotProduct(v1.crossProduct(v2))</code>
+     *
+     * @param v1 The first vector to triple
+     *           product against
+     *
+     * @param v2 The second vector to triple
+     *           product against
      *
      * @return the triple product of the vector,
      *         <code>v1</code> and <code>v2</code>
@@ -356,6 +390,8 @@ public class Vec3 {
      * Equivalent to:
      *
      * <code>subtract(v).magnitude()</code>
+     *
+     * @param v The vector to subtract
      *
      * @return the distance between the
      *         vector and <code>v</code>
